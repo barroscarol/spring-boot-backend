@@ -8,10 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import javax.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Produto implements Serializable {
@@ -26,6 +27,8 @@ public class Produto implements Serializable {
 	private String nome;
 	private double preco;
 
+	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name ="PRODUTO_CATEGORIA",
 	           joinColumns = @JoinColumn(name="produto_id"),
