@@ -20,6 +20,7 @@ public class Categoria implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,7 +67,7 @@ public class Categoria implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 }
