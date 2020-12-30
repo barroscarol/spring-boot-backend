@@ -14,11 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
 @Entity
 public class Cliente implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -30,21 +31,22 @@ public class Cliente implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
-	
-	/*Cliente possui vários endereços*/
-	@OneToMany(mappedBy="cliente")
+
+	/*
+	 * Cliente possui vários endereços e Cliente pode Serializar os seus Endereços
+	 */
+	@JsonManagedReference
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
-	
-	
-	/*Cliente possui vários telefones - Coleção de Strings */
-	/*Telefone é Entidade fraca*/
+
+	/* Cliente possui vários telefones - Coleção de Strings */
+	/* Telefone é Entidade fraca */
 	@ElementCollection
-	@CollectionTable(name="TELEFONE")
+	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
-	
+
 	public Cliente() {
-		
+
 	}
 
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
@@ -135,7 +137,5 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
