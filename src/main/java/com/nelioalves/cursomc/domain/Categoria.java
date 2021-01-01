@@ -20,18 +20,15 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 
-	
 	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
-	
-	
+
 	@JsonManagedReference
-	@ManyToMany(mappedBy="categorias")
+	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
-	
 
 	private static final long serialVersionUID = 1L;
 
@@ -79,8 +76,6 @@ public class Categoria implements Serializable {
 	public Categoria() {
 		super();
 	}
-
-	
 
 	public List<Produto> getProdutos() {
 		return produtos;

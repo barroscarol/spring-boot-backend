@@ -27,24 +27,20 @@ public class Endereco implements Serializable {
 	private String bairro;
 	private String cep;
 
-	
-	
-	/*Muitos Endereços para um cliente e Endereço NÃO pode serializar o cliente*/
+	/* Muitos Endereços para um cliente e Endereço NÃO pode serializar o cliente */
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="cliente_id")
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	
-	/*Muitas cidades para um Endereço*/
+	/* Muitas cidades para um Endereço */
 	@ManyToOne
-	@JoinColumn(name="cidade_id")
+	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
 
 	public Endereco() {
 
 	}
-
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cliente cliente, Cidade cidade) {
@@ -57,7 +53,6 @@ public class Endereco implements Serializable {
 		this.cliente = cliente;
 		this.cidade = cidade;
 	}
-
 
 	@Override
 	public int hashCode() {
