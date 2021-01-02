@@ -12,21 +12,17 @@ import com.nelioalves.cursomc.domain.Cliente;
 import com.nelioalves.cursomc.services.ClienteService;
 
 @RestController
-@RequestMapping(value ="/clientes")
+@RequestMapping(value = "/clientes")
 public class ClienteResource {
 
 	@Autowired
 	private ClienteService service;
-	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Optional<Cliente>> find(@PathVariable Integer id) {
 
 		Optional<Cliente> obj = Optional.ofNullable(service.find(id));
 		return ResponseEntity.ok().body(obj);
 	}
-	
-	
-	
-	
-	
+
 }
