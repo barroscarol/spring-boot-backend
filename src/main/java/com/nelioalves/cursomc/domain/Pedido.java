@@ -35,7 +35,7 @@ public class Pedido implements Serializable {
 	
 	
 	/*Mapeamento Bidirecional 1:1 */
-	@JsonManagedReference
+	 
 	@OneToOne(cascade=CascadeType.ALL,mappedBy="pedido") 
 	private Pagamento pagamento;
 
@@ -50,7 +50,7 @@ public class Pedido implements Serializable {
 	}
 
 	
-	@JsonManagedReference
+	 
 	@ManyToOne /*Um cliente pode ter vários pedidos*/
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
