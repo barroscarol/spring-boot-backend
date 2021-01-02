@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Pedido implements Serializable {
@@ -29,14 +28,13 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instance;
-	
-	
-	/*Mapeamento Bidirecional 1:1 */
-	 
-	@OneToOne(cascade=CascadeType.ALL,mappedBy="pedido") 
+
+	/* Mapeamento Bidirecional 1:1 */
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
 
 	public Pedido() {
@@ -49,22 +47,17 @@ public class Pedido implements Serializable {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
-	
-	 
-	@ManyToOne /*Um cliente pode ter vários pedidos*/
-	@JoinColumn(name="cliente_id")
+	@ManyToOne /* Um cliente pode ter vários pedidos */
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	
-	@ManyToOne /*Um Endereço pode ter vários pedidos - a FK vem do "Many" */
-	@JoinColumn(name="endereco_de_entrega_id")
+	@ManyToOne /* Um Endereço pode ter vários pedidos - a FK vem do "Many" */
+	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
-	
-	
-	/*Classe pedido vai conhecer um conjunto de ItensPedidos*/
-	@OneToMany(mappedBy="id.pedido")
+
+	/* Classe pedido vai conhecer um conjunto de ItensPedidos */
+	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
 
 	public Integer getId() {
 		return id;
@@ -105,7 +98,7 @@ public class Pedido implements Serializable {
 	public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
-	
+
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
@@ -113,7 +106,6 @@ public class Pedido implements Serializable {
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -139,7 +131,5 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
-
-
 
 }
