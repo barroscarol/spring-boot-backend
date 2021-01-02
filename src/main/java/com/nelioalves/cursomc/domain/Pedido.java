@@ -37,16 +37,6 @@ public class Pedido implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
 
-	public Pedido() {
-	}
-
-	public Pedido(Integer id, Date instance, Cliente cliente, Endereco enderecoDeEntrega) {
-		this.id = id;
-		this.instance = instance;
-		this.cliente = cliente;
-		this.enderecoDeEntrega = enderecoDeEntrega;
-	}
-
 	@ManyToOne /* Um cliente pode ter vários pedidos */
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -58,6 +48,16 @@ public class Pedido implements Serializable {
 	/* Classe pedido vai conhecer um conjunto de ItensPedidos */
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
+
+	public Pedido() {
+	}
+
+	public Pedido(Integer id, Date instance, Cliente cliente, Endereco enderecoDeEntrega) {
+		this.id = id;
+		this.instance = instance;
+		this.cliente = cliente;
+		this.enderecoDeEntrega = enderecoDeEntrega;
+	}
 
 	public Integer getId() {
 		return id;
